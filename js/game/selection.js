@@ -1,6 +1,6 @@
 var Copter = Copter || {};
-Copter.Game = function () {};
-Copter.Game.prototype = {
+Copter.Selection = function () {};
+Copter.Selection.prototype = {
     preload: function () {},
     create: function () {}
 };
