@@ -12,6 +12,7 @@ Copter.Boot.prototype = {
         this.game.load.image('loading', 'assets/ui-elements/loading.jpg');
     },
     create: function () {
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.state.start('preload');
     }
 };

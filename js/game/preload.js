@@ -52,6 +52,6 @@ Copter.Preload.prototype = {
 
     },
     loadingFinished: function () {
-        // this.game.state.start('selection');
+        this.game.state.start('selection');
     }
 };
