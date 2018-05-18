@@ -27,6 +27,29 @@ Copter.Game.prototype = {
             this.gameOver();
         }, this);
 
+        //Add enemies group here
+        this.enemies = this.add.group();
+        this.enemies.enableBody = true;
+        this.enemies.physicsBodyType = Phaser.Physics.ARCADE;
+        this.enemies.createMultiple(20, 'enemy');
+        this.enemies.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', function(e){
+            console.log('reset enemy');
+            e.kill();
+        });
+        this.enemies.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
+        this.enemies.setAll('checkWorldBounds', true);
+
+        //Add Score section here
+        this.score = this.add.text(this.game.world.width - 100, 10, 'Score: 0', {
+            font: '24px Roboto',
+            fill: '#000',
+            fontWeight:'bold'
+        });
+
+
+        //Add collision listeners
+
+
         // Add keyboard handling
         this.cursors = this.game.input.keyboard.createCursorKeys();
 
@@ -37,6 +60,13 @@ Copter.Game.prototype = {
             this.player.body.velocity.y = this.gravity * (-1);
         }else{
             this.player.body.velocity.y = this.gravity;
+        }
+        var enemy = this.enemies.getFirstExists(false);
+
+        console.log(enemy)
+        if(enemy){
+            enemy.reset(799,this.game.world.height * Math.random());
+            enemy.body.velocity.x -= 250;
         }
     },
     gameOver: function(){

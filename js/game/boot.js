@@ -8,7 +8,7 @@ Copter.Boot = function () {};
 Copter.Boot.prototype = {
     preload: function () {
     
-        this.game.load.image('background', 'assets/background/background.png');
+        this.game.load.image('background', 'assets/background/background-1.png');
         this.game.load.image('logo', 'assets/ui-elements/logo.png');
         this.game.load.image('loading', 'assets/ui-elements/loading.jpg');
     },
