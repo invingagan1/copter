@@ -24,7 +24,7 @@ Copter.Game.prototype = {
         this.player.body.gravity.y = this.gravity;
         this.player.checkWorldBounds = true;
         this.player.events.onOutOfBounds.add(function(){
-            console.log('game over');
+            this.gameOver();
         }, this);
 
         // Add keyboard handling
@@ -38,5 +38,8 @@ Copter.Game.prototype = {
         }else{
             this.player.body.velocity.y = this.gravity;
         }
+    },
+    gameOver: function(){
+        this.game.state.start('game-over');
     }
 };
