@@ -3,6 +3,9 @@ Copter.Game = function () {};
 Copter.Game.prototype = {
     velocity:5,
     gravity:200,
+    enemyRate: 5,
+    timerCheck:0,
+    score:0,
     preload: function () {},
     create: function () {
         
@@ -35,12 +38,15 @@ Copter.Game.prototype = {
         this.enemies.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', function(e){
             console.log('reset enemy');
             e.kill();
-        });
+            this.score++;
+            this.updateScore();
+        }, this);
         this.enemies.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
         this.enemies.setAll('checkWorldBounds', true);
+        // this.timerCheck = this.game.time.now + (1000 / this.enemyRate);
 
         //Add Score section here
-        this.score = this.add.text(this.game.world.width - 100, 10, 'Score: 0', {
+        this.scoreText = this.add.text(this.game.world.width - 100, 10, 'Score: 0', {
             font: '24px Roboto',
             fill: '#000',
             fontWeight:'bold'
@@ -48,7 +54,7 @@ Copter.Game.prototype = {
 
 
         //Add collision listeners
-
+        
 
         // Add keyboard handling
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -61,15 +67,22 @@ Copter.Game.prototype = {
         }else{
             this.player.body.velocity.y = this.gravity;
         }
-        var enemy = this.enemies.getFirstExists(false);
+        if(this.timerCheck < this.game.time.now){
+            var enemy = this.enemies.getFirstExists(false);
+            
+            if(enemy){
+                enemy.reset(799,this.game.world.height * Math.random());
+                enemy.body.velocity.x -= 250 + (500) * Math.random();
+            }
 
-        console.log(enemy)
-        if(enemy){
-            enemy.reset(799,this.game.world.height * Math.random());
-            enemy.body.velocity.x -= 250;
+            this.timerCheck = this.game.time.now + (2000 / this.enemyRate);
         }
+        
     },
     gameOver: function(){
         this.game.state.start('game-over');
+    },
+    updateScore: function(){
+        this.scoreText.setText('Score: '+ this.score);
     }
 };
