@@ -30,6 +30,9 @@ Copter.Game.prototype = {
             this.gameOver();
         }, this);
 
+        this.player.inputEnabled = true;
+        this.player.input.enableDrag(true);
+
         //Add enemies group here
         this.enemies = this.add.group();
         this.enemies.enableBody = true;
@@ -68,7 +71,11 @@ Copter.Game.prototype = {
         //Add collision listeners
 
         // Add keyboard handling
-        this.cursors = this.game.input.keyboard.createCursorKeys();
+        // this.cursors = this.game.input.keyboard.createCursorKeys();
+
+        // this.game.input.onDown.add(function(){
+        //     this.game.physics.arcade.moveToPointer(this.player, 1);
+        // }, this);
 
     },
     update: function(){
@@ -82,25 +89,25 @@ Copter.Game.prototype = {
             this.gameOver();
         }, null, this);
 
-        if(this.cursors.up.isDown || this.game.input.activePointer.isDown){
-            this.player.body.velocity.y = this.gravity * (-1);
-        }
-        else if(this.cursors.down.isDown){
-            this.player.body.velocity.y = this.gravity * (1);
-        }
-        else{
-            this.player.body.velocity.y = 0;
-        }
+        // if(this.cursors.up.isDown || this.game.input.activePointer.isDown){
+        //     this.player.body.velocity.y = this.gravity * (-1);
+        // }
+        // else if(this.cursors.down.isDown){
+        //     this.player.body.velocity.y = this.gravity * (1);
+        // }
+        // else{
+        //     this.player.body.velocity.y = 0;
+        // }
 
-        if(this.cursors.right.isDown ){
-            this.player.body.velocity.x = this.gravity * (1);
-        }
-        else if(this.cursors.left.isDown){
-            this.player.body.velocity.x = this.gravity * (-1);
-        }
-        else{
-            this.player.body.velocity.x = 0;
-        }
+        // if(this.cursors.right.isDown ){
+        //     this.player.body.velocity.x = this.gravity * (1);
+        // }
+        // else if(this.cursors.left.isDown){
+        //     this.player.body.velocity.x = this.gravity * (-1);
+        // }
+        // else{
+        //     this.player.body.velocity.x = 0;
+        // }
 
         if(this.timerCheck < this.game.time.now){
             var enemy = this.enemies.getFirstExists(false);
@@ -113,7 +120,7 @@ Copter.Game.prototype = {
             var bomb = this.bombs.getFirstExists(false);
             if(bomb){
                 bomb.reset(100 + this.game.world.width * Math.random(),1 );
-                bomb.body.velocity.y += 250 + 500 * Math.random();
+                bomb.body.velocity.y += 100 + 100 * Math.random();
             }
 
             this.timerCheck = this.game.time.now + (2000 / this.enemyRate);
