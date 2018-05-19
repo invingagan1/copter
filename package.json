@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "phaser-plugin-virtual-gamepad": "^1.0.0",
     "phaser-swipe": "^1.0.4"
   },
   "devDependencies": {},

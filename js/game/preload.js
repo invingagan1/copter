@@ -48,6 +48,7 @@ Copter.Preload.prototype = {
         this.load.image('player', 'assets/plane/player1.png');
         this.load.image('missile', 'assets/bullets/missile.png');
         this.load.image('bomb', 'assets/bullets/bombs.png')
+        this.load.spritesheet('gamepad','assets/gamepad/gamepad_spritesheet.png',100,100);
 
         this.game.load.start();
         this.loadingText.setText('Loading...');
