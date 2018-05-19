@@ -3,7 +3,8 @@ Copter.Game = function () {};
 Copter.Game.prototype = {
     velocity:5,
     gravity:250,
-    enemyRate: 1.5,
+    enemyRate: 1,
+    enemyRateChangeTimer:0,
     timerCheck:0,
     score:0,
     preload: function () {},
@@ -62,7 +63,7 @@ Copter.Game.prototype = {
         this.bombs.setAll('checkWorldBounds', true);
 
         //Add Score section here
-        this.scoreText = this.add.text(this.game.world.width - 100, 10, 'Score: 0', {
+        this.scoreText = this.add.text(this.game.world.width - 150, 10, 'Score: 0', {
             font: '24px Roboto',
             fill: '#000',
             fontWeight:'bold'
@@ -86,6 +87,8 @@ Copter.Game.prototype = {
         this.button = this.gamepad.addButton(400,420,1.2,'gamepad');
         this.button.visible= false;
         
+        //EnemyRateChangeTimer
+        this.enemyRateChangeTimer = this.game.time.now + 10000;
     },
     update: function(){
         this.backgroundTile.tilePosition.x -= this.velocity;
@@ -161,6 +164,12 @@ Copter.Game.prototype = {
             this.timerCheck = this.game.time.now + (2000 / this.enemyRate);
         }
         
+        if(this.enemyRateChangeTimer < this.game.time.now){
+            
+            this.enemyRate += 0.5;
+            this.enemyRateChangeTimer = this.game.time.now + 10000; 
+            console.log(this.enemyRate);
+        }
     },
     gameOver: function(){
         this.game.state.start('game-over');
