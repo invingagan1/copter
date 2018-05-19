@@ -122,20 +122,22 @@ Copter.Game.prototype = {
             
         // }
 
-        if(this.cursors.up.isDown || this.joyStick.properties.y < 0){
+        var upDown = Math.abs(this.joyStick.properties.y) > Math.abs(this.joyStick.properties.x);
+        
+        if(this.cursors.up.isDown || this.joyStick.properties.y < 0 && upDown) {
             this.player.body.velocity.y = this.gravity * (-1);
         }
-        else if(this.cursors.down.isDown || this.joyStick.properties.y > 0){
+        else if(this.cursors.down.isDown || this.joyStick.properties.y > 0 && upDown){
             this.player.body.velocity.y = this.gravity * (1);
         }
         else{
             this.player.body.velocity.y = 0;
         }
 
-        if(this.cursors.right.isDown || this.joyStick.properties.x > 0 ){
+        if(this.cursors.right.isDown || this.joyStick.properties.x > 0 && !upDown){
             this.player.body.velocity.x = this.gravity * (1);
         }
-        else if(this.cursors.left.isDown || this.joyStick.properties.x < 0){
+        else if(this.cursors.left.isDown || this.joyStick.properties.x < 0 && !upDown){
             this.player.body.velocity.x = this.gravity * (-1);
         }
         else{
