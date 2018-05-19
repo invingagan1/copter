@@ -48,18 +48,18 @@ Copter.Game.prototype = {
         this.enemies.setAll('checkWorldBounds', true);
         
         // add bombs
-        // this.bombs = this.add.group();
-        // this.bombs.enableBody = true;
-        // this.bombs.physicsBodyType = Phaser.Physics.ARCADE;
-        // this.bombs.createMultiple(20, 'bomb');
-        // this.bombs.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', function(b){
-        //     b.kill();
-        //     this.score++;
-        //     this.updateScore();
-        // }, this);
+        this.bombs = this.add.group();
+        this.bombs.enableBody = true;
+        this.bombs.physicsBodyType = Phaser.Physics.ARCADE;
+        this.bombs.createMultiple(20, 'bomb');
+        this.bombs.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', function(b){
+            b.kill();
+            this.score++;
+            this.updateScore();
+        }, this);
 
-        // this.bombs.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-        // this.bombs.setAll('checkWorldBounds', true);
+        this.bombs.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
+        this.bombs.setAll('checkWorldBounds', true);
 
         //Add Score section here
         this.scoreText = this.add.text(this.game.world.width - 100, 10, 'Score: 0', {
@@ -94,9 +94,9 @@ Copter.Game.prototype = {
             this.gameOver();
         }, null, this);
 
-        // this.game.physics.arcade.overlap(this.player, this.bombs, function(){
-        //     this.gameOver();
-        // }, null, this);
+        this.game.physics.arcade.overlap(this.player, this.bombs, function(){
+            this.gameOver();
+        }, null, this);
 
         // var direction = this.swipe.check();
         // if(direction !== null){
@@ -152,11 +152,11 @@ Copter.Game.prototype = {
                 enemy.body.velocity.x -= 100 + (100) * Math.random();
             }
 
-            // var bomb = this.bombs.getFirstExists(false);
-            // if(bomb){
-            //     bomb.reset(100 + this.game.world.width * Math.random(),1 );
-            //     bomb.body.velocity.y += 100 + 100 * Math.random();
-            // }
+            var bomb = this.bombs.getFirstExists(false);
+            if(bomb){
+                bomb.reset(100 + this.game.world.width * Math.random(),1 );
+                bomb.body.velocity.y += 100 + 100 * Math.random();
+            }
 
             this.timerCheck = this.game.time.now + (2000 / this.enemyRate);
         }
