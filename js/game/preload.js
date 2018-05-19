@@ -45,7 +45,7 @@ Copter.Preload.prototype = {
     },
     startLoadingAssets: function () {
         //Background
-        this.load.image('player', 'assets/plane/player.png');
+        this.load.image('player', 'assets/plane/player1.png');
         this.load.image('missile', 'assets/bullets/missile.png');
         this.load.image('bomb', 'assets/bullets/bombs.png')
 
