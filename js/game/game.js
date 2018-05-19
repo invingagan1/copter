@@ -88,6 +88,7 @@ Copter.Game.prototype = {
         this.button.visible= false;
         
         //EnemyRateChangeTimer
+        this.enemyRate = 1;
         this.enemyRateChangeTimer = this.game.time.now + 10000;
     },
     update: function(){
