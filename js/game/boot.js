@@ -18,6 +18,19 @@ Copter.Boot.prototype = {
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
 
+        this.game.scale.forceOrientation(true, false);
+
+        this.game.scale.enterIncorrectOrientation.add(function(){
+            var incorrectMode = document.querySelector('#incorrectMode');
+            incorrectMode.style.display = 'flex';
+        }, this);
+
+        this.game.scale.leaveIncorrectOrientation.add(function(){
+            
+            var incorrectMode = document.querySelector('#incorrectMode');
+            incorrectMode.style.display = 'none';
+        }, this);
+
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.state.start('preload');
     }

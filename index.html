@@ -13,6 +13,23 @@
         html {
             padding: 0;
             margin: 0;
+            font-size:12px;
+        }
+        #incorrectMode {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100vw;
+            height: 100vh;
+            background: #CDCDCD;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+        }
+        h1{
+            font:2em;
+            text-align: center;
         }
     </style>
     <!-- Phaser library added here -->
@@ -22,6 +39,11 @@
 </head>
 
 <body>
+    <div id="incorrectMode">
+        <h1>
+                Play game in Landscape mode.
+        </h1>
+    </div>
 </body>
 <!-- Game logic files  -->
 <script src="./js/game/boot.js"></script>
