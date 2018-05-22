@@ -50,6 +50,13 @@ Copter.Preload.prototype = {
         this.load.image('bomb', 'assets/bullets/bombs.png')
         this.load.spritesheet('gamepad','assets/gamepad/gamepad_spritesheet.png',100,100);
 
+        //UI elements to be preloaded
+        this.load.image('play','assets/ui-elements/play.png');
+        this.load.image('settings','assets/ui-elements/settings.png');
+        this.load.image('facebook','assets/ui-elements/facebook.png');
+        this.load.image('volume','assets/ui-elements/volume.png');
+        this.load.image('mute','assets/ui-elements/mute.png');
+
         this.game.load.start();
         this.loadingText.setText('Loading...');
 

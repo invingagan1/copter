@@ -14,16 +14,19 @@ Copter.Selection.prototype = {
          * 3. mute
          * 4. board
          */
-        this.playText = this.add.text(this.game.world.centerX, this.game.world.centerY,"Play" ,{
-            font: "24px Roboto",
-            fill: "#F00"
-        });
-        this.playText.anchor.setTo(0.5);
-        this.playText.inputEnabled = true;
-        this.playText.events.onInputDown.add( function(){
+        
+
+        this.play = this.add.sprite(280,204,'play');
+        this.play.inputEnabled = true;
+        this.play.events.onInputDown.add(function(){
             this.game.state.start("game");
         }, this);
+
+        this.settings = this.add.sprite(280,316,'settings');
+        this.facebook = this.add.sprite(628,22,'facebook');
+        this.mute = this.add.sprite(708,22,'mute')
+        this.volume = this.add.sprite(708,22,'volume')
         // TODO: Remove this once game is ready;
-        this.game.state.start('game')
+        //this.game.state.start('game')
     }
 };
